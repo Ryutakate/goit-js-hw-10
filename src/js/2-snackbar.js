@@ -1,6 +1,7 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
+
 // Отримуємо форму з DOM
 const form = document.querySelector(".form");
 
