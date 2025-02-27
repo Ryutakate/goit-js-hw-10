@@ -3,7 +3,6 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-// Отримуємо елементи з DOM
 const datePicker = document.querySelector("#datetime-picker");
 const startBtn = document.querySelector("[data-start]");
 const daysEl = document.querySelector("[data-days]");
@@ -14,7 +13,6 @@ const secondsEl = document.querySelector("[data-seconds]");
 let userSelectedDate = null;
 let countdownInterval = null;
 
-// Налаштування Flatpickr
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -38,7 +36,6 @@ const options = {
 
 flatpickr(datePicker, options);
 
-// Функція оновлення таймера
 function updateTimer() {
     const timeLeft = userSelectedDate - new Date();
     if (timeLeft <= 0) {
@@ -62,7 +59,6 @@ function updateTimer() {
     secondsEl.textContent = String(seconds).padStart(2, "0");
 }
 
-// Обробник натискання кнопки "Start"
 startBtn.addEventListener("click", () => {
     if (!userSelectedDate) return;
 

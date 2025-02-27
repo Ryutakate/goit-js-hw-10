@@ -4,30 +4,30 @@ body{
 }
 
 .main-button {
-  display: inline-block;
-  padding: 10px 16px;
-  background: #4e75ff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-  text-align: center;
-  cursor: pointer;
-  border: none;
+    display: inline-block;
+    padding: 10px 16px;
+    background: #4e75ff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    text-align: center;
+    cursor: pointer;
+    border: none;
 }
 
 .main-button:hover {
-  background: #6c8cff;
+    background: #6c8cff;
 }
 
 
 .button-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 200px;
 }
 #datetime-picker{
     box-sizing: border-box;
@@ -205,30 +205,30 @@ input[name="delay"]:focus {
 }
 
 .back-button {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 16px;
-  background: #4e75ff;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background 0.3s ease;
-  text-align: center;
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    background: #4e75ff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    text-align: center;
 }
 
 .back-button:hover {
-  background: #6c8cff;
+    background: #6c8cff;
 }
 
 .back-button:active {
-  background: #3a5bcc;
+    background: #3a5bcc;
 }
 
 .back-button.fixed {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
 }

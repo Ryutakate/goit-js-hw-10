@@ -2,17 +2,14 @@ import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
 
-// Отримуємо форму з DOM
 const form = document.querySelector(".form");
 
 form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    // Отримуємо значення з форми
     const delay = parseInt(form.elements.delay.value);
     const state = form.elements.state.value;
 
-    // Функція для створення промісу
     const createPromise = (delay, state) => {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
@@ -25,7 +22,6 @@ form.addEventListener("submit", (event) => {
         });
     };
 
-    // Викликаємо проміс і обробляємо результат
     createPromise(delay, state)
         .then((delay) => {
             iziToast.success({
@@ -42,6 +38,5 @@ form.addEventListener("submit", (event) => {
             });
         });
 
-    // Очищаємо форму після сабміту
     form.reset();
 });
