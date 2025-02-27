@@ -52,7 +52,7 @@ startBtn.addEventListener("click", () => {
     }
 
     startBtn.disabled = true;
-    datePicker.disabled = true; // 🔒 Забороняємо зміну дати під час таймера
+    datePicker.disabled = true; 
 
     updateTimer(timeDifference);
     countdownInterval = setInterval(() => {
@@ -66,7 +66,7 @@ startBtn.addEventListener("click", () => {
             });
 
             startBtn.disabled = true; 
-            datePicker.disabled = false; // 🔓 Розблоковуємо інпут після завершення
+            datePicker.disabled = false; 
             return;
         }
         updateTimer(timeLeft);
