@@ -36,41 +36,61 @@ const options = {
 
 flatpickr(datePicker, options);
 
-function updateTimer() {
-    const timeLeft = userSelectedDate - new Date();
-    if (timeLeft <= 0) {
-        clearInterval(countdownInterval);
-        iziToast.success({
-            title: "Time's up!",
-            message: "The countdown has finished.",
+startBtn.addEventListener("click", () => {
+    if (!userSelectedDate) return;
+
+    const now = new Date();
+    const timeDifference = userSelectedDate - now;
+
+    if (timeDifference <= 0) {
+        iziToast.error({
+            title: "Error",
+            message: "Selected time must be in the future!",
             position: "topRight",
         });
         return;
     }
 
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    startBtn.disabled = true;
+    datePicker.disabled = true; // 🔒 Забороняємо зміну дати під час таймера
 
+    updateTimer(timeDifference);
+    countdownInterval = setInterval(() => {
+        const timeLeft = userSelectedDate - new Date();
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            iziToast.success({
+                title: "Done!",
+                message: "Timer has ended!",
+                position: "topRight",
+            });
+
+            startBtn.disabled = true; 
+            datePicker.disabled = false; // 🔓 Розблоковуємо інпут після завершення
+            return;
+        }
+        updateTimer(timeLeft);
+    }, 1000);
+});
+
+function updateTimer(ms) {
+    const { days, hours, minutes, seconds } = convertMs(ms);
     daysEl.textContent = String(days).padStart(2, "0");
     hoursEl.textContent = String(hours).padStart(2, "0");
     minutesEl.textContent = String(minutes).padStart(2, "0");
     secondsEl.textContent = String(seconds).padStart(2, "0");
 }
 
-startBtn.addEventListener("click", () => {
-    if (!userSelectedDate) return;
+function convertMs(ms) {
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
 
-    startBtn.disabled = true;
-    datePicker.disabled = true;
+    const days = Math.floor(ms / day);
+    const hours = Math.floor((ms % day) / hour);
+    const minutes = Math.floor((ms % hour) / minute);
+    const seconds = Math.floor((ms % minute) / second);
 
-    iziToast.success({
-        title: "Success",
-        message: "Countdown started!",
-        position: "topRight",
-    });
-
-    updateTimer();
-    countdownInterval = setInterval(updateTimer, 1000);
-});
+    return { days, hours, minutes, seconds };
+}
